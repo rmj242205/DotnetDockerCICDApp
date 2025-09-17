@@ -33,7 +33,11 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
-app.Run();
+
+app.MapGet("/", () => "Hello World!");
+
+// Important: Bind to 0.0.0.0 so Docker can expose it
+app.Run("http://0.0.0.0:80");
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
